@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- this package will extends the parent package -->
+	<package name="default" namespace="/" extends="abstract_struts">
+
+		
+		<default-action-ref name="index"></default-action-ref>
+		<action name="index">
+			<result>/jsp/error.jsp</result>
+		</action>
+		<action name="*_*_*" method="{2}" class="com.venn.{3}.{1}Action">
+			<result>/jsp/test.jsp</result>
+			<result name="add">/jsp/{2}.jsp</result>
+			<result name="update">/jsp/{2}.jsp</result>
+			<result name="login">/jsp/{2}.jsp</result>
+			<result name="checkLoginFail">/jsp/login.jsp</result>
+			<interceptor-ref name="myDefault"/>
+		</action>
+		
+		<action name="LoginAction" method="login" class="com.venn.action.LoginAction">
+			<result>/jsp/success.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+			<result name="checkLoginFail">/jsp/login.jsp</result>
+			<interceptor-ref name="myDefault"/>
+		</action>
+	</package>
+</struts>
